@@ -7,7 +7,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
  
  #include "InterpolationLib.h"
 
-double Interpolation::Step(double xValues[], double yValues[], int numValues, double pointX, double threshold = 1)
+double Interpolation::Step(double xValues[], double yValues[], int numValues, double pointX, double threshold)
 {
 	// extremos
 	if (pointX <= xValues[0]) return yValues[0];
@@ -21,7 +21,7 @@ double Interpolation::Step(double xValues[], double yValues[], int numValues, do
 	return t < threshold ? yValues[i] : yValues[i + 1];
 }
 
-double Interpolation::Linear(double xValues[], double yValues[], int numValues, double pointX, bool trim = true)
+double Interpolation::Linear(double xValues[], double yValues[], int numValues, double pointX, bool trim)
 {
 	if (trim)
 	{
@@ -53,7 +53,7 @@ double Interpolation::Linear(double xValues[], double yValues[], int numValues, 
 
 }
 
-double Interpolation::SmoothStep(double xValues[], double yValues[], int numValues, double pointX, bool trim = true)
+double Interpolation::SmoothStep(double xValues[], double yValues[], int numValues, double pointX, bool trim)
 {
 	if (trim)
 	{
@@ -72,7 +72,7 @@ double Interpolation::SmoothStep(double xValues[], double yValues[], int numValu
 	return yValues[i] * (1 - t) + yValues[i + 1] * t;
 }
 
-double Interpolation::CatmullSpline(double xValues[], double yValues[], int numValues, double pointX, bool trim = true)
+double Interpolation::CatmullSpline(double xValues[], double yValues[], int numValues, double pointX, bool trim)
 {
 	if (trim)
 	{
@@ -128,7 +128,7 @@ double Interpolation::catmullSlope(double x[], double y[], int n, int i)
 	return (y[i + 1] - y[i - 1]) / (x[i + 1] - x[i - 1]);
 }
 
-double Interpolation::ConstrainedSpline(double xValues[], double yValues[], int numValues, double pointX, bool trim = true)
+double Interpolation::ConstrainedSpline(double xValues[], double yValues[], int numValues, double pointX, bool trim)
 {
 	if (trim)
 	{
